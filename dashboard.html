@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Espace Parents / Élèves</title>
+</head>
+<body>
+
+<h1>Bienvenue dans l'espace privé</h1>
+
+<p>Accès réservé aux parents et élèves.</p>
+
+<button onclick="logout()">Se déconnecter</button>
+
+<script type="module">
+import { auth } from "./firebase.js";
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});
+
+window.logout = function(){
+  signOut(auth);
+}
+</script>
+
+</body>
+</html>
